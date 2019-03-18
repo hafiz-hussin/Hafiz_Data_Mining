@@ -6,9 +6,18 @@
 from twython import Twython
 import json
 import pandas as pd
-import mysql.connector
 import time
 from unidecode import unidecode
+
+
+# postgrest
+from sqlalchemy import create_engine
+from sqlalchemy import Column, String, Integer, Sequence
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.engine.url import URL
+import logging
+import settings
 
 tweetList = []
 
@@ -75,27 +84,38 @@ class TwitterApp:
 
 
 # Db handling
+DeclarativeBase = declarative_base()
+class TweetsDB(DeclarativeBase):
+    __tablename__ = "twitter"
+    id = Column(Integer, Sequence('trigger_id_seq'), primary_key=True)
+    user = Column('user', String)
+    post_date = Column('post_date', String)
+    post_text = Column('post_text', String)
+    favorite_count = Column('favorite_count', String)
+
+
 class DBHandling:
 
     def __init__(self):
-        self.mydb = mysql.connector.connect(
-            host='localhost',
-            user='root',
-            passwd='root',
-            database='mdsklse'
-        )
+        db_url = URL(**settings.DATABASE)
+        logging.info("Creating as SQLdatabase connection at URL at URL '{db_url}'".format(db_url=db_url))
+
+        db = create_engine(db_url)
+        Session = sessionmaker(db)
+        self.session = Session()
+        DeclarativeBase.metadata.create_all(db)
+
 
     def insertIntoDB(self, data):
-        mycursor = self.mydb.cursor()
 
-        sql = " INSERT INTO tweetsdata " \
-              " ( user, post_date, post_text, favorite_count ) VALUES (%s, %s, %s, %s )"
-
-        val = (str(data.user), str(data.date), str(data.text), str(data.favorite_count))
-
-        mycursor.execute(sql, val)
-        self.mydb.commit()
-
+        psql = TweetsDB(
+            user=data.user,
+            post_date=data.date,
+            post_text=data.text,
+            favorite_count=data.favorite_count
+        )
+        self.session.add(psql)
+        self.session.commit()
 
 twitterApp = TwitterApp()
 toQuery = ['KLSE', 'Malaysia', 'stock', 'bursa saham']
