@@ -4,7 +4,6 @@
 
 # Import the Twython class
 from twython import Twython
-import json
 import pandas as pd
 import time
 from unidecode import unidecode
@@ -38,11 +37,14 @@ class TwitterApp:
     def __init__(self):
         # Load credentials from json file
         # Must have the Tweeter developers' key for accessing the twitter API
-        with open("twitter_credentials.json", "r") as file:
-            creds = json.load(file)
+        #
+
+        # tweepy.OAuthHandler('TkMV71aDwWjTM1hqVovZalBxJ', 'eywYDPbQp70MfDTPkTaH4GPK0xuYFujq9XZKINiezGycWAMwSN')
+        APP_KEY = 'TkMV71aDwWjTM1hqVovZalBxJ'
+        APP_SECRET = 'eywYDPbQp70MfDTPkTaH4GPK0xuYFujq9XZKINiezGycWAMwSN'
 
         # Instantiate an object
-        self.python_tweets = Twython(creds['CONSUMER_KEY'], creds['CONSUMER_SECRET'])
+        self.python_tweets = Twython(APP_KEY, APP_SECRET)
 
     def reformatStr(self, inputStr):
         return unidecode(inputStr).replace('\n', '').replace('\r', '')
@@ -79,7 +81,7 @@ class TwitterApp:
         # Structure data in a pandas DataFrame for easier manipulation
         df = pd.DataFrame(dict_)
         # df.sort_values(by='favorite_count', inplace=True, ascending=False)
-        # print(df.head(5))
+        print(df.head(5))
         # print(df)
 
 
