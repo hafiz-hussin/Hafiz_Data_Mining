@@ -4,5 +4,5 @@ DATABASE = {
         'port': '5433',
         'username': 'postgres',
         'password': 'postgres',
-        'database': 'mhafizhussin'
+        'database': 'scrape'
     }

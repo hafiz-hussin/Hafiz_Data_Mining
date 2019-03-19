@@ -78,24 +78,3 @@ for forum_link in link_list_df.forum_links:
 
     # else:
     #     print 'no' + forum_link
-
-# launch url
-
-url = "https://klse.i3investor.com/servlets/forum/800004286.jsp?fp=39"
-
-# create a new Firefox session
-driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver')
-driver.implicitly_wait(30)
-driver.get(url)
-
-
-
-soup_level1 = BeautifulSoup(driver.page_source, 'lxml')
-
-for forum in soup_level1.find_all('tr'):
-    # if forum.find('td', class_='highlight') is not None and forum.find(width='120') is not None:
-    if forum.find(class_='postcount') is not None:
-        # print forum.p.text
-        print forum.find('span', class_='comuid').text
-        print forum.find('span', class_='comdt').text
-        print forum.find('span', class_='autolink').text

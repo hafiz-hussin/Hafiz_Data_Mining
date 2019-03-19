@@ -24,10 +24,12 @@
       <ObjectId>16386</ObjectId>
       <StateNumber>570</StateNumber>
       <Owner>mhafizhussin</Owner>
-      <IntrospectionStateNumber>4458</IntrospectionStateNumber>
+      <IntrospectionStateNumber>141878</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
       <Relations>sequence|table|16399|16401|1
+sequence|table|16427|16429|1
+sequence|table|16460|16462|1
 </Relations>
     </database>
     <role id="6" parent="1" name="mhafizhussin">
@@ -122,7 +124,7 @@
       <Comment>standard public schema</Comment>
       <StateNumber>359</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>4459</IntrospectionStateNumber>
+      <IntrospectionStateNumber>141879</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -182,7 +184,23 @@
       <SchemaName>pg_catalog</SchemaName>
       <SchemaId>11</SchemaId>
     </extension>
-    <sequence id="29" parent="21" name="quotes_id_seq">
+    <sequence id="29" parent="21" name="trigger_id_seq">
+      <ObjectId>16471</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>141824</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>bigint</DataType>
+    </sequence>
+    <sequence id="30" parent="21" name="company_id_seq">
+      <ObjectId>16427</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>17555</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="31" parent="21" name="quotes_id_seq">
       <ObjectId>16399</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>584</StateNumber>
@@ -190,12 +208,196 @@
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <table id="30" parent="21" name="quotes">
+    <sequence id="32" parent="21" name="shareInvestor_id_seq">
+      <ObjectId>16460</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>27913</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <table id="33" parent="21" name="company">
+      <ObjectId>16429</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>17555</StateNumber>
+    </table>
+    <table id="34" parent="21" name="forex">
+      <ObjectId>16473</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>141825</StateNumber>
+    </table>
+    <table id="35" parent="21" name="quotes">
       <ObjectId>16401</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>584</StateNumber>
     </table>
-    <column id="31" parent="30" name="id">
+    <table id="36" parent="21" name="shareInvestor">
+      <ObjectId>16462</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>27913</StateNumber>
+    </table>
+    <column id="37" parent="33" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>17555</StateNumber>
+      <DefaultExpression>nextval(&apos;company_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="38" parent="33" name="Company_Code">
+      <Position>2</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>17555</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="39" parent="33" name="Date_Announced">
+      <Position>3</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>17555</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="40" parent="33" name="Financial_YE">
+      <Position>4</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>17555</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="41" parent="33" name="QTR">
+      <Position>5</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>17555</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="42" parent="33" name="Period_End">
+      <Position>6</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>17555</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="43" parent="33" name="Revenue_K">
+      <Position>7</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>17555</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="44" parent="33" name="PNL_K">
+      <Position>8</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>17555</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="45" parent="33" name="EPS">
+      <Position>9</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>17555</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="46" parent="33" name="Cur_Date">
+      <Position>10</Position>
+      <DataType>timestamp|0s</DataType>
+      <StateNumber>17555</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <index id="47" parent="33" name="company_pkey">
+      <ObjectId>16436</ObjectId>
+      <StateNumber>17555</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="48" parent="33" name="company_pkey">
+      <ObjectId>16437</ObjectId>
+      <StateNumber>17555</StateNumber>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>company_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="49" parent="34" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>141825</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="50" parent="34" name="thedate">
+      <Position>2</Position>
+      <DataType>timestamp|0s</DataType>
+      <StateNumber>141825</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="51" parent="34" name="thetime">
+      <Position>3</Position>
+      <DataType>timestamp|0s</DataType>
+      <StateNumber>141825</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="52" parent="34" name="curName">
+      <Position>4</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>141825</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="53" parent="34" name="currCode">
+      <Position>5</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>141825</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="54" parent="34" name="unit">
+      <Position>6</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>141825</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="55" parent="34" name="buyingVal">
+      <Position>7</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>141825</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="56" parent="34" name="invBuyingVal">
+      <Position>8</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>141825</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="57" parent="34" name="sellingVal">
+      <Position>9</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>141825</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="58" parent="34" name="invSellingVal">
+      <Position>10</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>141825</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="59" parent="34" name="middleRate">
+      <Position>11</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>141825</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="60" parent="34" name="invMiddleRate">
+      <Position>12</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>141825</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="61" parent="34" name="forex_pkey">
+      <ObjectId>16479</ObjectId>
+      <StateNumber>141825</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="62" parent="34" name="forex_pkey">
+      <ObjectId>16480</ObjectId>
+      <StateNumber>141825</StateNumber>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>forex_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="63" parent="35" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -203,29 +405,92 @@
       <DefaultExpression>nextval(&apos;quotes_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="32" parent="30" name="text">
+    <column id="64" parent="35" name="text">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>584</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="33" parent="30" name="author">
+    <column id="65" parent="35" name="author">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>584</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="34" parent="30" name="quotes_pkey">
+    <index id="66" parent="35" name="quotes_pkey">
       <ObjectId>16408</ObjectId>
       <StateNumber>584</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="35" parent="30" name="quotes_pkey">
+    <key id="67" parent="35" name="quotes_pkey">
       <ObjectId>16409</ObjectId>
       <StateNumber>584</StateNumber>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>quotes_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="68" parent="36" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>27913</StateNumber>
+      <DefaultExpression>nextval(&apos;&quot;shareInvestor_id_seq&quot;&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="69" parent="36" name="comp_id">
+      <Position>2</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>27913</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="70" parent="36" name="date">
+      <Position>3</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>27913</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="71" parent="36" name="open_p">
+      <Position>4</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>27913</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="72" parent="36" name="high_p">
+      <Position>5</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>27913</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="73" parent="36" name="low_p">
+      <Position>6</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>27913</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="74" parent="36" name="close_p">
+      <Position>7</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>27913</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="75" parent="36" name="volume">
+      <Position>8</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>27913</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="76" parent="36" name="shareInvestor_pkey">
+      <ObjectId>16469</ObjectId>
+      <StateNumber>27913</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="77" parent="36" name="shareInvestor_pkey">
+      <ObjectId>16470</ObjectId>
+      <StateNumber>27913</StateNumber>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>shareInvestor_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
   </database-model>
