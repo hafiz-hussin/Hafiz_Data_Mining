@@ -131,11 +131,11 @@ dbInst = DBHandling()
 
 # Prepare s file name as exported csv file
 timeStr = time.strftime("%Y%m%d_%H%M%S", time.gmtime())
-tweetOutputFile = open('/Users/mhafizhussin/Documents/UM_MASTER_PROGRAM/SEMESTER\ 3/WQD7005_DATA_MINING/GROUP_CODES/'
+tweetOutputFile = open('/Users/mhafizhussin/Documents/UM_MASTER_PROGRAM/SEMESTER 3/WQD7005_DATA_MINING/GROUP_CODES/'
                        'Hafiz_Data_Mining/data/tweetsdata_' + timeStr + '.csv', 'w')
 tweetOutputFile.write("user,post_date,post_text,favorite_count\n")
 
 for tweetData in tweetList:
-    # print(tweetData.toString())
+    print(tweetData.toString())
     dbInst.insertIntoDB(tweetData)
-    # tweetOutputFile.write(tweetData.toString() + '\n')
+    tweetOutputFile.write(tweetData.toString() + '\n')
