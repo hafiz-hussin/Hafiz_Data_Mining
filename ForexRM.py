@@ -156,13 +156,13 @@ crawler.crawl()
 # Prepare s file name as exported csv file
 timeStr = time.strftime("%Y%m%d_%H%M%S", time.gmtime())
 currRateOutputFile = open('currRate_' + timeStr + '.csv', 'w')
-currRateOutputFile.write("thedate,thetime,curName,currCode,unit,buyingVal,invBuyingVal,sellingVal,invSellingVal,"
+currRateOutputFile.write("thedate,curName,currCode,unit,buyingVal,invBuyingVal,sellingVal,invSellingVal,"
                      "middleRate, invMiddleRate\n")
 
 for data in currlist:
     print(data.toString())
-    dbIns = DBHandling()
-    # currRateOutputFile.write(data.toString()+'\n')
-    dbIns.insertIntoDB(data)
+    # dbIns = DBHandling()
+    currRateOutputFile.write(data.toString()+'\n')
+    # dbIns.insertIntoDB(data)
 
 print('Done process')

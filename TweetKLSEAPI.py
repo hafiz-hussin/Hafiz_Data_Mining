@@ -39,12 +39,15 @@ class TwitterApp:
         # Must have the Tweeter developers' key for accessing the twitter API
         #
 
-        # tweepy.OAuthHandler('TkMV71aDwWjTM1hqVovZalBxJ', 'eywYDPbQp70MfDTPkTaH4GPK0xuYFujq9XZKINiezGycWAMwSN')
-        APP_KEY = 'TkMV71aDwWjTM1hqVovZalBxJ'
-        APP_SECRET = 'eywYDPbQp70MfDTPkTaH4GPK0xuYFujq9XZKINiezGycWAMwSN'
+        keys = pd.read_csv('Oauths.csv')
+        APP_KEY = str(keys.iloc[0,0])
+        APP_SECRET = str(keys.iloc[0,1])
+        OAUTH_TOKEN = str(keys.iloc[0,2])
+        OAUTH_TOKEN_SECRET = str(keys.iloc[0,3])
+
 
         # Instantiate an object
-        self.python_tweets = Twython(APP_KEY, APP_SECRET)
+        self.python_tweets = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 
     def reformatStr(self, inputStr):
         return unidecode(inputStr).replace('\n', '').replace('\r', '')
@@ -128,10 +131,11 @@ dbInst = DBHandling()
 
 # Prepare s file name as exported csv file
 timeStr = time.strftime("%Y%m%d_%H%M%S", time.gmtime())
-tweetOutputFile = open('csvdata/tweetsdata_' + timeStr + '.csv', 'w')
+tweetOutputFile = open('/Users/mhafizhussin/Documents/UM_MASTER_PROGRAM/SEMESTER\ 3/WQD7005_DATA_MINING/GROUP_CODES/'
+                       'Hafiz_Data_Mining/data/tweetsdata_' + timeStr + '.csv', 'w')
 tweetOutputFile.write("user,post_date,post_text,favorite_count\n")
 
 for tweetData in tweetList:
-    print(tweetData.toString())
+    # print(tweetData.toString())
     dbInst.insertIntoDB(tweetData)
-    tweetOutputFile.write(tweetData.toString() + '\n')
+    # tweetOutputFile.write(tweetData.toString() + '\n')
