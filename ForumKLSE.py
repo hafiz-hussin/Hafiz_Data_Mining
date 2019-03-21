@@ -1,7 +1,5 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
-import re
-import sys
 import pandas as pd
 from requests import get
 import time
